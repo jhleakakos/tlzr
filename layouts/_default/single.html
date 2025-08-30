@@ -1,0 +1,11 @@
+{{ define "main" }}
+    <h1>{{ .Title }}</h1>
+
+    {{ $dateMachine := .Date }}
+    {{ $dateHuman := .Date.Format .Site.Params.dateFormat }}
+
+    <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+
+    {{ .Content }}
+    {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+{{ end }}
