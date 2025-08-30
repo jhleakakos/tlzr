@@ -1,2 +1,29 @@
-<h1>{{ site.Title }}</h1>
-{{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+   <div class="container-fluid">
+       <a href="/" class="navbar-brand">
+           <h1>{{ site.Title }}</h1>
+       </a>
+       <div class="collapse navbar-collapse">
+           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+               {{ range site.Menus.nav }}
+                   <li class="nav-item">
+                       <a href="{{ .URL  }}" class="nav-link active">{{ .Name }}</a>
+                   </li>
+               {{ end }}
+
+               <li class="nav-item dropdown">
+                   <a href="" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
+                   <ul class="dropdown-menu">
+                       {{ range site.Menus.navdropdown }}
+                           <li><a href="{{ .URL  }}" class="dropdown-item">{{ .Name }}</a></li>
+                       {{ end }}
+
+                       <li><hr class="dropdown-divider"></li>
+                       <li><a class="dropdown-item" href="#">Something else here</a></li>
+                   </ul>
+               </li>
+
+           </ul>
+       </div>
+   </div>
+</nav>
