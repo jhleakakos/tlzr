@@ -7,7 +7,8 @@
 ## Configuration
 
 1. Add favicon.svg to /static in site directory
-2. Customize TOML config file
+2. Add logo.png to /static in site directory
+3. Customize TOML config file
  
 Add navbar links and dropdown items in toml config
 
