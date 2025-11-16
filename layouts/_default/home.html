@@ -1,8 +1,50 @@
 {{ define "main" }}
-    <div class="container, text-bg-secondary">
-        {{ .Content }}
-        <div class="div, text-black">Yo</div>
+
+<!--<div class="bg-dark text-secondary px-4 py-5 text-center">-->
+<div class="text-secondary px-4 py-5 text-center">
+    <div class="py-5">
+        <h1 class="display-5 fw-bold text-white">Welcome to {{ .Site.Title }}</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="fs-5 mb-4">{{ site.Params.intro }}</p>
+        </div>
     </div>
+</div>
+
+<div class="py-5">
+    <div class="container">
+        <h2>Blog</h2>
+        <div class="row">
+        {{ .Content }}
+        </div>
+        <a href="/blog" class="btn btn-primary">View All Posts</a>
+    </div>
+</div>
+
+<div class="py-5">
+    <div class="container">
+        <h2>Papers</h2>
+        <div class="row">
+            {{ .Content }}
+        </div>
+        <a href="/paper-review" class="btn btn-primary">View All Paper Reviews</a>
+    </div>
+</div>
+
+<!--    <div class="container, text-bg-secondary">-->
+<!--        {{ .Content }}-->
+<!--        <div class="div, text-black">Yo</div>-->
+<!--    </div>-->
+
+
+
+<!--posts-->
+<!--papers-->
+<!--about-->
+<!--contact-->
+
+
+
+
 <!--    {{ range site.RegularPages }}-->
 <!--        <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>-->
 <!--        {{ .Summary }}-->
