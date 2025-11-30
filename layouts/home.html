@@ -13,11 +13,11 @@
     <div class="container">
         <h2>Blog</h2>
         <div class="row">
-            {{ with .GetPage "./blog/_index.md" }}
+            {{ with .GetPage "./posts/_index.md" }}
                 {{ .Content }}
             {{ end }}
         </div>
-        <a href="/blog" class="btn btn-primary">View All Posts</a>
+        <a href="/posts" class="btn btn-primary">View All Posts</a>
     </div>
 </div>
 
