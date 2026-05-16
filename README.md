@@ -10,9 +10,9 @@
 2. Add logo.png to /static in site directory
 3. Customize TOML config file
  
-Add navbar links and dropdown items in toml config
+Add navbar links and in toml config
 
-Examples:
+Examples based on current theme configuration:
  
 ```toml
 [[menus.nav]]
@@ -26,13 +26,18 @@ name = 'About'
 url = '/about'
 weight = 2
 
-[[menus.navdropdown]]
-name = 'Posts'
-url = '/posts'
+[[menus.nav]]
+name = 'Notes'
+url = '/notes'
 weight = 20
 
-[[menus.navdropdown]]
-name = 'Tags'
-url = '/tags'
+[[menus.nav]]
+name = 'Papers'
+url = '/papers'
+weight = 30
+
+[[menus.nav]]
+name = 'Projects'
+url = '/projects'
 weight = 30
 ```

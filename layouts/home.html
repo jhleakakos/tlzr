@@ -1,55 +1,55 @@
 {{ define "main" }}
 
-<div class="text-secondary px-4 py-5 text-center">
-    <div class="py-5">
-        <h1 class="display-5 fw-bold text-white">Welcome to {{ .Title }}</h1>
-        <div class="col-lg-6 mx-auto">
-            <p class="fs-5 mb-4">{{ .Content }}</p>
-        </div>
+<section class="home-hero">
+    <p class="eyebrow">Thinking Bits</p>
+    <h1>{{ .Title }}</h1>
+    <div class="home-hero__content">
+        {{ .Content }}
     </div>
-</div>
+</section>
 
-<div class="py-5">
-    <div class="container">
-        <h2>Blog</h2>
-        <div class="row">
-            {{ with .GetPage "./posts/_index.md" }}
-                {{ .Content }}
-            {{ end }}
-        </div>
-        <a href="/posts" class="btn btn-primary">View All Posts</a>
+<section class="section-grid" aria-label="Site sections">
+    <article class="feature-card">
+        <p class="feature-card__label">Notes</p>
+        <h2>Working thoughts</h2>
+        <p>Short technical notes, research fragments, explanations, and ideas as they develop.</p>
+        <a href="/notes" class="stretched-link">Browse notes</a>
+    </article>
+
+    <article class="feature-card">
+        <p class="feature-card__label">Papers</p>
+        <h2>Paper analyses</h2>
+        <p>Structured notes on papers, including the core idea, useful takeaways, and open questions.</p>
+        <a href="/papers" class="stretched-link">Browse papers</a>
+    </article>
+
+    <article class="feature-card">
+        <p class="feature-card__label">Projects</p>
+        <h2>Longer projects</h2>
+        <p>Structured notes on papers, including the core idea, useful takeaways, and open questions.</p>
+        <a href="/projects" class="stretched-link">Browse projects</a>
+    </article>
+</section>
+
+<section class="home-section">
+    <div class="section-heading">
+        <p class="eyebrow">Latest</p>
+        <h2>Recent writing</h2>
     </div>
-</div>
 
-<div class="py-5">
-    <div class="container">
-        <h2>Papers</h2>
-        <div class="row">
-            {{ with .GetPage "./paper-review/_index.md" }}
-                {{ .Content }}
-            {{ end }}
-        </div>
-        <a href="/paper-review" class="btn btn-primary">View All Paper Reviews</a>
+    <div class="entry-list">
+        {{ range first 5 (where site.RegularPages "Section" "in" (slice "notes" "papers")) }}
+        <article class="entry-row">
+            <div>
+                <h3><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h3>
+                {{ with .Summary }}
+                <p>{{ . }}</p>
+                {{ end }}
+            </div>
+            <time datetime="{{ .Date }}">{{ .Date.Format site.Params.dateFormat }}</time>
+        </article>
+        {{ end }}
     </div>
-</div>
+</section>
 
-<!--    <div class="container, text-bg-secondary">-->
-<!--        {{ .Content }}-->
-<!--        <div class="div, text-black">Yo</div>-->
-<!--    </div>-->
-
-
-
-<!--notes-->
-<!--papers-->
-<!--about-->
-<!--contact-->
-
-
-
-
-<!--    {{ range site.RegularPages }}-->
-<!--        <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>-->
-<!--        {{ .Summary }}-->
-<!--    {{ end }}-->
 {{ end }}

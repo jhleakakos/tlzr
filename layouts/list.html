@@ -1,69 +1,41 @@
 {{ define "main" }}
 
-<div class="container">
-    {{ if eq .Section "notes" }}
-        <div class="mb-4">
-            <h1 class="mb-3">{{ .Title }}</h1>
-            <p class="lead mb-0">Collection of notes</p>
-        </div>
-
-        {{ .Content }}
-
-        <div class="row g-4">
-            {{ range .Pages }}
-                <div class="card col-4">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ .LinkTitle }}</h5>
-                        <p class="card-text">{{ .Summary }}</p>
-                        <a href="{{ .RelPermalink }}" class="btn btn-primary">{{ .LinkTitle }}</a>
-                    </div>
-                </div>
-            {{ end }}
-        </div>
-    {{ end }}
-
-    {{ if eq .Section "papers" }}
-        <div class="mb-4">
-            <h1 class="mb-3">{{ .Title }}</h1>
-            <p class="lead mb-0">Too many papers</p>
-        </div>
-
-        {{ .Content }}
-
-        <div class="row g-4">
-            {{ range .Pages }}
-                <div class="card col-4">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ .LinkTitle }}</h5>
-                        <p class="card-text">{{ .Summary }}</p>
-                        <a href="{{ .RelPermalink }}" class="btn btn-primary">{{ .LinkTitle }}</a>
-                    </div>
-                </div>
-            {{ end }}
-        </div>
-    {{ end }}
-
-    {{ if eq .Section "projects" }}
-    <div class="mb-4">
-        <h1 class="mb-3">{{ .Title }}</h1>
-        <p class="lead mb-0">Projects plz</p>
-    </div>
-
-    {{ .Content }}
-
-    <div class="row g-4">
-        {{ range .Pages }}
-        <div class="card col-4">
-            <div class="card-body">
-                <h5 class="card-title">{{ .LinkTitle }}</h5>
-                <p class="card-text">{{ .Summary }}</p>
-                <a href="{{ .RelPermalink }}" class="btn btn-primary">{{ .LinkTitle }}</a>
-            </div>
-        </div>
-        {{ end }}
+<section class="page-header">
+    <p class="eyebrow">{{ .Section }}</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}
+    <div class="page-header__content">
+        {{ . }}
     </div>
     {{ end }}
+</section>
 
-</div>
+<section class="archive-list">
+    {{ range .Pages }}
+    <article class="archive-item">
+        <div class="archive-item__body">
+            <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+
+            {{ with .Params.summary }}
+            <p>{{ . }}</p>
+            {{ else with .Summary }}
+            <p>{{ . }}</p>
+            {{ end }}
+
+            {{ with .Params.tags }}
+            <ul class="tag-list" aria-label="Tags">
+                {{ range . }}
+                <li><a href='{{ "/tags/" | relURL }}{{ . | urlize }}'>{{ . }}</a></li>
+                {{ end }}
+            </ul>
+            {{ end }}
+        </div>
+
+        <div class="archive-item__meta">
+            <time datetime='{{ .Date.Format "2006-01-02" }}'>{{ .Date.Format site.Params.dateFormat }}</time>
+        </div>
+    </article>
+    {{ end }}
+</section>
 
 {{ end }}
